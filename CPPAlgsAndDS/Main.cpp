@@ -5,11 +5,13 @@ using namespace std;
 
 int main() {
 	cout << "Data Structures and Algorithms\n";
-	int A[] = { 10,20,30,40,50 };
-	create(A, 5);
+	int A[] = { 10,20,30,40,50}; // size 5
+	create(A, 5);								// (array,size)
 	display(first);
 	cout << "\n\n";
-	cout << "Sorted: " << isSorted(first) << endl;
+	
+	reverseLinks(first);
+
 	display(first);
 	system("Pause");
 

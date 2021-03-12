@@ -246,3 +246,38 @@ bool isSorted(struct Node *p) {
 	return true;
 
 }
+void removeDuplicates(struct Node *p) {
+	struct Node *q = p->next;
+	while (q) { // a nullptr on q means end of list
+		if (p->data != q->data) {
+			p = q;
+			q = q->next;
+		}
+		else {
+			p->next = q->next;
+			delete q;
+			q = p->next;
+		}
+		
+		
+	}
+
+}
+void reverseListElements(struct Node *p) {
+	
+}
+void reverseLinks(struct Node *p) {
+	struct Node *r, *q;
+	p = first;
+	q = nullptr;
+	r = nullptr;
+	while (p) {
+		// sliding r q p
+		r = q;
+		q = p;
+		p = p->next;
+		// q take linke and points it to r instead of where p is (next);
+		q->next = r;
+	}
+	first = q;
+}
