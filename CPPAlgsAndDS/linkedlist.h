@@ -5,7 +5,7 @@ using namespace std;
 struct Node {
 	int data;
 	struct Node *next;
-}*first = nullptr, *last = nullptr; // global pointer
+}*first = nullptr, *second = nullptr, *third = nullptr; // global pointer
 int count(struct Node *p) {
 	int c = 0;
 	while (p) {
@@ -25,12 +25,32 @@ int rCount(struct Node *p) {
 void create(int A[], int n) {
 	int i;
 	struct Node *t;
-	//struct Node *last; // used for adding
+	struct Node *last = nullptr; // used for adding
 	// creating first node
 	first = new struct Node;
 	first->data = A[0];
 	first->next = nullptr;
 	last = first;
+	// it with forloop
+	for (i = 1; i < n; i++) {
+		t = new Node;			// 1. New node
+		t->data = A[i];			// 2. Assign new value
+		t->next = nullptr;		// 3. Assign *next as null
+		last->next = t;			// 4. previous last node.next value points to new node
+		last = t;				// 5. last changed top new node
+	}
+
+}
+// This takes advantage of merging of two lists. 
+void create2(int A[], int n) {
+	int i;
+	struct Node *t;
+	struct Node *last; // used for adding
+	// creating first node
+	second = new struct Node;
+	second->data = A[0];
+	second->next = nullptr;
+	last = second;
 	// it with forloop
 	for (i = 1; i < n; i++) {
 		t = new Node;			// 1. New node
@@ -170,6 +190,7 @@ void insertAfterNode(int position, int d) {
 }
 void insertLast(int d) {
 	struct Node *t = new Node;
+	struct Node *last = nullptr;
 	t->data = d;
 	t->next = nullptr;
 	if (first == nullptr) {
@@ -263,14 +284,9 @@ void removeDuplicates(struct Node *p) {
 	}
 
 }
-void reverseListElements(struct Node *p) {
-	
-}
 void reverseLinks(struct Node *p) {
-	struct Node *r, *q;
-	p = first;
-	q = nullptr;
-	r = nullptr;
+	struct Node *r = nullptr, *q = nullptr;
+	
 	while (p) {
 		// sliding r q p
 		r = q;
@@ -280,4 +296,42 @@ void reverseLinks(struct Node *p) {
 		q->next = r;
 	}
 	first = q;
+}
+void concat(struct Node *p, struct Node *q) {
+	
+	third = p;
+	while (p->next) {
+		p = p->next;
+		
+	}
+	p->next = q;
+}
+void merge(struct Node *p, struct Node *q) {
+	struct Node *last;
+	if (p->data < q->data) {
+		third = last = p;
+		p = p->next;
+		third->next = nullptr;
+	}
+	else {
+		third = last = q;
+		q = q->next;
+		third->next = nullptr;
+	}
+	while (p && q) {
+		if (p->data < q->data) {
+			last->next = p;
+			last = p;
+			p = p->next;
+			last->next = nullptr; // otherwise you have prevously stored pointer on this node.
+		}
+		else {
+			last->next = q;
+			last = q;
+			q = q->next;
+			last->next = nullptr;
+		}
+	}
+	if (p)last->next = p;
+	if (q)last->next = q;
 }
