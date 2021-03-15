@@ -1,21 +1,19 @@
 #include <iostream>
-#include "linkedlist.h"
+//#include "linkedlist.h"
+#include "Linked.h"
 using namespace std;
 // self referential structure
 
+
 int main() {
-	cout << "Data Structures and Algorithms\n";
+	cout << "Using class LL\nData Structures and Algorithms\n";
 	int A[] = { 10,20,30,40,50}; // size 5
 	int B[] = { 5,15,25,35,45};
-	create(A, 5);
-	create2(B, 5);   // (array,size)
-	display(first);
-	display(second);
-	//concat(first, second);
-	merge(first, second);
-	cout << "\n\n";
-	display(third);
-
+	LinkedList list(A,5);
+	
+	// cout <<
+	list.Insert(0, 1);// << endl;
+	list.Display();
 	system("Pause");
 
 	return 0;
